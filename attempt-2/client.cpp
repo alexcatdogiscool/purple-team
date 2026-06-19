@@ -21,7 +21,7 @@ void Client::protocol() {
     string secret;;
     cin >> secret;
 
-    int cSock = this->bindTo("192.168.0.179", 1234);
+    int cSock = this->bindTo("192.168.0.111", 1234);
     key serverKey;
     // recv public key
     recv(cSock, &serverKey.modulus, sizeof(serverKey.modulus), 0);

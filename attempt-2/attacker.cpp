@@ -4,18 +4,19 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <bits/stdint-uintn.h>
+#include <bits/stdc++.h>
 #include <arpa/inet.h>
 #include <string>
+#include <cstdlib>
 
 #include "application.h"
-#include "server.h"
+#include "attacker.h"
 
 using namespace std;
 
-Server::Server() {}
+Attacker::Attacker() {}
 
-void Server::protocol() {
-
+void Attacker::protocol() {
     this->setPort(1234);
 
     key pk;
@@ -38,10 +39,8 @@ void Server::protocol() {
     char* msg = (char*)malloc(sizeof(char)*ciph.length);
     decryptStr(sk, ciph, msg);
 
-    cout << "Server got: " << msg << endl;
+    cout << "Attacker got: " << msg << endl;
     
 
     close(sSock);
-
-
 }

@@ -9,6 +9,7 @@
 
 #include "server.h"
 #include "client.h"
+#include "attacker.h"
 
 using namespace std;
 
@@ -23,8 +24,20 @@ int main() {
     pid_t c_pid = fork();
 
     if (c_pid > 0) {// parent
-        Server s = Server();
-        s.protocol();
+
+        pid_t c_pid2 = fork();
+
+        if (c_pid2 > 0) {
+            Attacker a = Attacker();
+            a.protocol();
+        }
+        else { 
+            Server s = Server();
+            s.protocol();
+            
+        }
+
+        
     }
     else {// child
         Client c = Client();
